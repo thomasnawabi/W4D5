@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <h1 class="spotify">Spotify</h1>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <% if logged_in? %>
+    <nav class="logout">
+      <p>You're logged in as: <%= current_user.email %></p>
+      <%= button_to "Sign Out", session_url, method: :delete %>
+    </nav>
+    <% end %>
+
+  </head>
+
+  <body>
+
+    <%= yield %>
+    <% if flash[:errors]%>
+    <p class="errors"><%= flash[:errors].join(", ") %></p>
+    <% end %>
+  </body>
+</html>
